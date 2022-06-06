@@ -28,7 +28,7 @@ class CommentsController < ApplicationController
       render json: @comment.errors
     end
   end
-
+  
   private
 
   def comment_params

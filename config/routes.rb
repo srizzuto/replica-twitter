@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "posts#index"
 
-  
+  get '/likes', to: "likes#index"
   get '/comments', to: "comments#index"
   get '/posts', to: "posts#index"
   get '/posts/:post_id', to: "posts#show"
@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   post '/posts', to: "posts#create"
   post '/posts/comments', to: "comments#create"
   
+  put '/posts/comments/like', to: "likes#create"
 
   resources :sessions, only: [:new, :create, :destroy]
 
