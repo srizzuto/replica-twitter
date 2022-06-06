@@ -18,4 +18,4 @@ Una API de Rails que permite crear Usuarios, Posteos, Comentarios a los posteos 
 
 ## Postman
 
-Una vez que se accede a la colección y se despliega, se observaran distintos testeos realizados a las rutas creadas con sus respectivos JSONs. Se cubren testeos de `GET`, `POST` y `PUT` en este caso.
+Una vez que se accede a la colección y se despliega, se observaran distintos testeos realizados a las rutas creadas con sus respectivos JSONs. Se cubren testeos de `GET`, `POST` y `PUT` en este caso. Simplemente utilizando el boton `SEND` se observara el comportamiento de la API.
