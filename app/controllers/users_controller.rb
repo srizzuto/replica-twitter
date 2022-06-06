@@ -1,11 +1,17 @@
 class UsersController < ApplicationController
-
   def index
     @users = User.all
+    render json: @users
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find(params[:user_id])
+    render json: @user
+  end
+  
+  def posts
+    @posts = User.find(params[:user_id]).posts
+    render json: @posts
   end
 
   def new
@@ -13,37 +19,19 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.new(users_params)
     if @user.save
-      redirect_to @user
+      render json: {
+        status: :created,
+        user: @user
+      }
     else
-      render :new, status: :unprocessable_entity
+      render json: { error: "El usuario ya existe" }, status: 400
     end
-  end
-    
-  def edit
-    @user = User.find(params[:id])
-  end
-  
-  def update
-    @user = User.find(params[:id])
-    if @user.update(user_params)
-      redirect_to @user
-    else
-      render :edit, status: :unprocessable_entity
-    end
-  end
-
-  def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-    redirect_to root_path, status: :see_other
   end
 
   private
-
-  def user_params
+  def users_params
     params.require(:user).permit(:username, :city)
   end
-
 end

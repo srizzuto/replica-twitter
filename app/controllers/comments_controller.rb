@@ -1,11 +1,19 @@
-class UsersController < ApplicationController
+class CommentsController < ApplicationController
 
   def index
     @comments = Comment.all
+    render json: @comments
   end
 
   def show
-    @comment = Comment.find(params[:id])
+    if params[:user_id].nil?
+      @comment =  Post.find(params[:post_id]).comments.find(params[:comment_id])
+    else
+      @comment =  User.find(params[:user_id]).posts.find(params[:post_id]).comments.find(params[:comment_id])
+    end
+  render json: @comment
+  rescue
+    render json: { error: "No existe el Comentario" }, status: 404
   end
 
   def new
@@ -15,35 +23,16 @@ class UsersController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     if @comment.save
-      redirect_to @comment
+      render json: @comment
     else
-      render :new, status: :unprocessable_entity
+      render json: @comment.errors
     end
-  end
-    
-  def edit
-    @comment = Comment.find(params[:id])
-  end
-  
-  def update
-    @comment = Comment.find(params[:id])
-    if @comment.update(comment_params)
-      redirect_to @comment
-    else
-      render :edit, status: :unprocessable_entity
-    end
-  end
-
-  def destroy
-    @comment = User.find(params[:id])
-    @comment.destroy
-    redirect_to root_path, status: :see_other
   end
 
   private
 
-  def user_params
-    params.require(:comment).permit(:content)
+  def comment_params
+    params.require(:comment).permit(:content, :post_id, :user_id)
   end
 
 end
