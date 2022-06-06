@@ -1,24 +1,21 @@
-# README
+# Replica-Twitter
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
+Una API de Rails que permite crear Usuarios, Posteos, Comentarios a los posteos y, a estos últimos, likes.
 
 * Ruby version
 
-* System dependencies
+7.0.3
 
-* Configuration
+* Seteo del test
 
-* Database creation
+1) Clonar el repositorio: `git clone https://github.com/srizzuto/replica-twitter.git`
 
-* Database initialization
+2) Iniciar el servidor via `rails s`, debe estar haciendo un listening al http://127.0.0.1:3000 para posterior uso del Postman
 
-* How to run the test suite
+3) Abrir Postman https://web.postman.co/workspace/
 
-* Services (job queues, cache servers, search engines, etc.)
+4) Import `replica-twitter.postman_collection.json` del repositorio clonado al Postman
 
-* Deployment instructions
+* Postman
 
-* ...
+Una vez que se accede a la colección y se despliega, se observaran distintos testeos realizados a las rutas creadas con sus respectivos JSONs. Se cubren testeos de `GET`, `POST` y `PUT` en este caso.
