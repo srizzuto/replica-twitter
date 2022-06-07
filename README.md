@@ -2,7 +2,7 @@
 
 Una API de Rails que permite crear Usuarios, Posteos, Comentarios a los posteos y, a estos últimos, likes.
 
-## Ruby version
+## Rails version
 
 7.0.3
 
